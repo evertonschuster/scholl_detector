@@ -1,0 +1,57 @@
+app:
+  retention_days: 30
+  track_reset_minutes: 15
+  event_review_threshold: 3
+
+queue:
+  host: rabbitmq
+  port: 5672
+  username: guest
+  password: guest
+  exchange: classroom.events
+  exchange_type: topic
+
+database:
+  url: sqlite:///./mvp.db
+
+rooms:
+  - room_id: sala-101
+    cameras:
+      - camera_id: cam-101-a
+        rtsp_url: rtsp://user:pass@camera-101/stream
+        fps: 5
+        zones:
+          - zone_id: front
+            polygon:
+              - [0, 0]
+              - [640, 0]
+              - [640, 240]
+              - [0, 240]
+          - zone_id: back
+            polygon:
+              - [0, 240]
+              - [640, 240]
+              - [640, 480]
+              - [0, 480]
+      - camera_id: cam-101-b
+        rtsp_url: rtsp://user:pass@camera-101b/stream
+        fps: 5
+        zones:
+          - zone_id: corridor
+            polygon:
+              - [0, 0]
+              - [320, 0]
+              - [320, 480]
+              - [0, 480]
+  - room_id: sala-202
+    cameras:
+      - camera_id: cam-202-a
+        rtsp_url: rtsp://user:pass@camera-202/stream
+        fps: 5
+        zones:
+          - zone_id: middle
+            polygon:
+              - [0, 0]
+              - [640, 0]
+              - [640, 480]
+              - [0, 480]
